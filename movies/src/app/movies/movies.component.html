@@ -1,0 +1,25 @@
+<div class="container mt-5">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let movie of allMovies | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                <td><img [src]="movie.posterurl" class="mr-2" style="width: 20px">{{movie.title}}</td>
+                <td>
+                    <ngb-rating [(rate)]="movie.imdbRating"></ngb-rating>
+                </td>
+                <td>{{movie.releaseDate}}</td>
+                <td>{{movie.year}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-pagination class="d-flex justify-content-center mt-5" [(page)]="page" [pageSize]="pageSize"
+        [collectionSize]="allMovies.length"></ngb-pagination>
+</div>
